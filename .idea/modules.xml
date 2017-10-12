@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/chapter02/Client/Client.iml" filepath="$PROJECT_DIR$/chapter02/Client/Client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Netty实战.iml" filepath="$PROJECT_DIR$/Netty实战.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter02/Server/Server.iml" filepath="$PROJECT_DIR$/chapter02/Server/Server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter01/chapter01.iml" filepath="$PROJECT_DIR$/chapter01/chapter01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chapter02/chapter02.iml" filepath="$PROJECT_DIR$/chapter02/chapter02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/utils/utils.iml" filepath="$PROJECT_DIR$/utils/utils.iml" />
+    </modules>
+  </component>
+</project>
