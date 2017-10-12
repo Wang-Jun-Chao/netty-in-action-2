@@ -12,8 +12,10 @@
 
     <artifactId>chapter2</artifactId>
     <packaging>pom</packaging>
-    <name>第02章 你的第一款Netty应用程序</name>
-    <description>创建回显服务器和客户端</description>
+    <name>Chapter 2. Your First Netty Application - Echo App</name>
+    <description>
+        Build an Echo Server and Client
+    </description>
 
     <modules>
         <module>Client</module>

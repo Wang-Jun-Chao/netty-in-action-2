@@ -14,8 +14,10 @@
     <version>2.0-SNAPSHOT</version>
 
     <packaging>jar</packaging>
-    <name>第01章 Netty——异步和事件驱动</name>
-    <description>创建回显服务器和客户端</description>
+    <name>Chapter 1. Netty—asynchronous and event-driven</name>
+    <description>
+        Build an Echo Server and Client
+    </description>
 
 
 </project>
