@@ -11,12 +11,12 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>chapter04</artifactId>
+    <artifactId>chapter05</artifactId>
+    <version>1.0-SNAPSHOT</version>
 
-    <name>Chapter 4. Transports</name>
+    <packaging>jar</packaging>
+    <name>Chapter 5. ByteBuf</name>
     <description>
-        OIO, NIO, Local and Embedded Transports
+        Netty’s data container
     </description>
-
-
 </project>

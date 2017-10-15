@@ -10,7 +10,7 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>chapter2</artifactId>
+    <artifactId>chapter02</artifactId>
     <packaging>pom</packaging>
     <name>Chapter 2. Your First Netty Application - Echo App</name>
     <description>
