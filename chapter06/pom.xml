@@ -11,11 +11,13 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>chapter05</artifactId>
+    <artifactId>chapter06</artifactId>
 
-    <packaging>jar</packaging>
-    <name>Chapter 5. ByteBuf</name>
+    <name>
+        Chapter 6. ChannelHandler and ChannelPipeline
+    </name>
     <description>
-        Netty’s data container
+        The ChannelHandler and ChannelPipeline APIs
     </description>
+    
 </project>
