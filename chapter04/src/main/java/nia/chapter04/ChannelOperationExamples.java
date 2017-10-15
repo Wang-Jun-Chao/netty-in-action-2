@@ -20,6 +20,7 @@ import java.util.concurrent.Executors;
  */
 public class ChannelOperationExamples {
     private static final Channel CHANNEL_FROM_SOMEWHERE = new NioSocketChannel();
+
     /**
      * Listing 4.5 Writing to a Channel
      */
@@ -45,8 +46,7 @@ public class ChannelOperationExamples {
      */
     public static void writingToChannelFromManyThreads() {
         final Channel channel = CHANNEL_FROM_SOMEWHERE; // Get the channel reference from somewhere
-        final ByteBuf buf = Unpooled.copiedBuffer("your data",
-                CharsetUtil.UTF_8);
+        final ByteBuf buf = Unpooled.copiedBuffer("your data", CharsetUtil.UTF_8);
         Runnable writer = new Runnable() {
             @Override
             public void run() {
