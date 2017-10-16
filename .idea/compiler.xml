@@ -12,6 +12,7 @@
         <module name="chapter06" />
         <module name="chapter07" />
         <module name="chapter08" />
+        <module name="chapter09" />
         <module name="Client" />
         <module name="Server" />
         <module name="utils" />
@@ -25,6 +26,7 @@
       <module name="chapter06" target="1.8" />
       <module name="chapter07" target="1.8" />
       <module name="chapter08" target="1.8" />
+      <module name="chapter09" target="1.8" />
       <module name="Client" target="1.8" />
       <module name="Netty实战" target="1.8" />
       <module name="nia-samples-parent" target="1.8" />
