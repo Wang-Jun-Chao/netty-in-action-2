@@ -34,9 +34,7 @@ public class InvalidBootstrapClient {
         bootstrap.group(group).channel(OioSocketChannel.class)
                 .handler(new SimpleChannelInboundHandler<ByteBuf>() {
                     @Override
-                    protected void channelRead0(
-                            ChannelHandlerContext channelHandlerContext,
-                            ByteBuf byteBuf) throws Exception {
+                    protected void channelRead0(ChannelHandlerContext ctx, ByteBuf buf) throws Exception {
                         System.out.println("Received data");
                     }
                 });
