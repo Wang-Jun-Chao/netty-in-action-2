@@ -51,7 +51,9 @@ public class ChannelOperationExamples {
      */
     public static void writingToChannelFromManyThreads() {
         final Channel channel = CHANNEL_FROM_SOMEWHERE; // Get the channel reference from somewhere
+        // 创建持有要写数据的ByteBuf
         final ByteBuf buf = Unpooled.copiedBuffer("your data", CharsetUtil.UTF_8);
+        // 创建将数据写到Channel 的Runnable
         Runnable writer = new Runnable() {
             @Override
             public void run() {
@@ -60,10 +62,10 @@ public class ChannelOperationExamples {
         };
         Executor executor = Executors.newCachedThreadPool();
 
-        // write in one thread
+        // 递交写任务给线程池以便在某个线程中执行
         executor.execute(writer);
 
-        // write in another thread
+        // 递交另一个写任务以便在另一个线程中执行
         executor.execute(writer);
         //...
     }
