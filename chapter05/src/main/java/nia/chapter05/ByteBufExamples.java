@@ -220,12 +220,17 @@ public class ByteBufExamples {
      */
     public static void byteBufWriteRead() {
         Charset utf8 = Charset.forName("UTF-8");
+        // 创建一个用于保存给定字符串的字节的ByteBuf
         ByteBuf buf = Unpooled.copiedBuffer("Netty in Action rocks!", utf8);
+        // 打印第一个字符'N'
         System.out.println((char) buf.readByte());
+        // 存储当前的readerIndex 和writerIndex
         int readerIndex = buf.readerIndex();
         int writerIndex = buf.writerIndex();
+        // 将字符'?'追加到缓冲区
         buf.writeByte((byte) '?');
         assert readerIndex == buf.readerIndex();
+        // 将会成功，因为writeByte()方法移动了writerIndex
         assert writerIndex != buf.writerIndex();
     }
 
