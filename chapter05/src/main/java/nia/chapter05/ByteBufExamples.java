@@ -183,10 +183,15 @@ public class ByteBufExamples {
      */
     public static void byteBufCopy() {
         Charset utf8 = Charset.forName("UTF-8");
+        // 创建一个用于保存给定字符串的字节的ByteBuf
         ByteBuf buf = Unpooled.copiedBuffer("Netty in Action rocks!", utf8);
+        // 创建该ByteBuf 从索引0 开始到索引15结束的分段的副本
         ByteBuf copy = buf.copy(0, 15);
+        // 将打印“Netty in Action”
         System.out.println(copy.toString(utf8));
+        // 更新索引0 处的字节
         buf.setByte(0, (byte) 'J');
+        // 将会成功，因为数据不是共享的
         assert buf.getByte(0) != copy.getByte(0);
     }
 
@@ -195,12 +200,17 @@ public class ByteBufExamples {
      */
     public static void byteBufSetGet() {
         Charset utf8 = Charset.forName("UTF-8");
+        // 创建一个用于保存给定字符串的字节的ByteBuf
         ByteBuf buf = Unpooled.copiedBuffer("Netty in Action rocks!", utf8);
         System.out.println((char) buf.getByte(0));
+        // 存储当前的readerIndex 和writerIndex
         int readerIndex = buf.readerIndex();
         int writerIndex = buf.writerIndex();
+        // 将索引0 处的字节更新为字符'B'
         buf.setByte(0, (byte) 'B');
+        // 打印第一个字符，现在是'B'
         System.out.println((char) buf.getByte(0));
+        // 将会成功，因为这些操作并不会修改相应的索引
         assert readerIndex == buf.readerIndex();
         assert writerIndex == buf.writerIndex();
     }
