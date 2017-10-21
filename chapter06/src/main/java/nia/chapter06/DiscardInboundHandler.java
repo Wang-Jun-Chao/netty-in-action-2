@@ -12,10 +12,12 @@ import io.netty.util.ReferenceCountUtil;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
+// 扩展了ChannelInboundandlerAdapter
 @ChannelHandler.Sharable
 public class DiscardInboundHandler extends ChannelInboundHandlerAdapter {
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) {
+        // 通过调用ReferenceCountUtil.release() 方法释放资源
         ReferenceCountUtil.release(msg);
     }
 }

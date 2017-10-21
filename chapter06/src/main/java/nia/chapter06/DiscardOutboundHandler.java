@@ -17,9 +17,9 @@ import io.netty.util.ReferenceCountUtil;
 public class DiscardOutboundHandler
         extends ChannelOutboundHandlerAdapter {
     @Override
-    public void write(ChannelHandlerContext ctx,
-            Object msg, ChannelPromise promise) {
+    public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) {
         ReferenceCountUtil.release(msg);
+        // 通知ChannelPromise数据已经被处理了
         promise.setSuccess();
     }
 }
