@@ -17,7 +17,7 @@ public class ModifyChannelPipeline {
 
     /**
      * Listing 6.5 Modify the ChannelPipeline
-     * */
+     */
     public static void modifyPipeline() {
         ChannelPipeline pipeline = CHANNEL_PIPELINE_FROM_SOMEWHERE; // get reference to pipeline;
         FirstHandler firstHandler = new FirstHandler();
@@ -32,22 +32,22 @@ public class ModifyChannelPipeline {
     }
 
     private static final class FirstHandler
-        extends ChannelHandlerAdapter {
+            extends ChannelHandlerAdapter {
 
     }
 
     private static final class SecondHandler
-        extends ChannelHandlerAdapter {
+            extends ChannelHandlerAdapter {
 
     }
 
     private static final class ThirdHandler
-        extends ChannelHandlerAdapter {
+            extends ChannelHandlerAdapter {
 
     }
 
     private static final class FourthHandler
-        extends ChannelHandlerAdapter {
+            extends ChannelHandlerAdapter {
 
     }
 }

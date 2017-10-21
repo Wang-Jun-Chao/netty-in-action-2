@@ -13,10 +13,10 @@ import io.netty.channel.SimpleChannelInboundHandler;
  */
 @Sharable
 public class SimpleDiscardHandler
-    extends SimpleChannelInboundHandler<Object> {
+        extends SimpleChannelInboundHandler<Object> {
     @Override
     public void channelRead0(ChannelHandlerContext ctx,
-        Object msg) {
+            Object msg) {
         // No need to do anything special
     }
 }

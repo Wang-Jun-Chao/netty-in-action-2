@@ -15,10 +15,10 @@ import io.netty.util.ReferenceCountUtil;
  */
 @Sharable
 public class DiscardOutboundHandler
-    extends ChannelOutboundHandlerAdapter {
+        extends ChannelOutboundHandlerAdapter {
     @Override
     public void write(ChannelHandlerContext ctx,
-        Object msg, ChannelPromise promise) {
+            Object msg, ChannelPromise promise) {
         ReferenceCountUtil.release(msg);
         promise.setSuccess();
     }
