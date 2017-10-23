@@ -12,7 +12,7 @@ import io.netty.util.ReferenceCountUtil;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
-// 扩展了ChannelInboundandlerAdapter
+// 扩展了ChannelInboundHandlerAdapter
 @ChannelHandler.Sharable
 public class DiscardInboundHandler extends ChannelInboundHandlerAdapter {
     @Override
