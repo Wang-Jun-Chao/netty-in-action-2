@@ -28,7 +28,9 @@ public class GracefulShutdown {
      * Listing 8.9 Graceful shutdown
      */
     public void bootstrap() {
+        // 创建处理I/O 的EventLoopGroup
         EventLoopGroup group = new NioEventLoopGroup();
+        // 创建一个Bootstrap类的实例并配置它
         Bootstrap bootstrap = new Bootstrap();
         bootstrap.group(group)
                 .channel(NioSocketChannel.class)
@@ -43,6 +45,7 @@ public class GracefulShutdown {
                 });
         bootstrap.connect(new InetSocketAddress("www.manning.com", 80)).syncUninterruptibly();
         //,,,
+        // shutdownGracefully()方法将释放所有的资源，并且关闭所有的当前正在使用中的Channel
         Future<?> future = group.shutdownGracefully();
         // block until the group has shutdown
         future.syncUninterruptibly();

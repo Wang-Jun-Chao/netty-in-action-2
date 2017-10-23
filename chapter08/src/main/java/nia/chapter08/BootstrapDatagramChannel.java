@@ -38,6 +38,8 @@ public class BootstrapDatagramChannel {
                         // Do something with the packet
                     }
                 });
+
+        // 调用bind()方法，因为该协议是无连接的
         ChannelFuture future = bootstrap.bind(new InetSocketAddress(0));
         future.addListener(new ChannelFutureListener() {
             @Override
