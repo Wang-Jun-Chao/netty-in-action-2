@@ -11,6 +11,7 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
+// 使用注解@Sharable标注
 @Sharable
 public class SharableHandler extends ChannelInboundHandlerAdapter {
     @Override
