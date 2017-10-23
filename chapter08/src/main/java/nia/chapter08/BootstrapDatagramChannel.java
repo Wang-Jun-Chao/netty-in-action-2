@@ -24,9 +24,14 @@ public class BootstrapDatagramChannel {
      * Listing 8.8 Using Bootstrap with DatagramChannel
      */
     public void bootstrap() {
+        // 创建一个Bootstrap 的实例以创建和绑定新的数据报Channel
         Bootstrap bootstrap = new Bootstrap();
-        bootstrap.group(new OioEventLoopGroup()).channel(OioDatagramChannel.class).handler(
-                new SimpleChannelInboundHandler<DatagramPacket>() {
+        // 设置EventLoopGroup，其提供了用以处理Channel 事件的EventLoop
+        bootstrap.group(new OioEventLoopGroup())
+                // 指定Channel的实现
+                .channel(OioDatagramChannel.class)
+                // 设置用以处理Channel 的I/O 以及数据的ChannelInboundHandler
+                .handler(new SimpleChannelInboundHandler<DatagramPacket>() {
                     @Override
                     public void channelRead0(ChannelHandlerContext ctx,
                             DatagramPacket msg) throws Exception {

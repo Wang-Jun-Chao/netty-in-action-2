@@ -25,13 +25,19 @@ public class BootstrapWithInitializer {
         // 创建ServerBootstrap 以创建和绑定新的Channel
         ServerBootstrap bootstrap = new ServerBootstrap();
         // 设置EventLoopGroup，其将提供用以处理Channel事件的EventLoop
-        bootstrap.group(new NioEventLoopGroup(), new NioEventLoopGroup())
-            .channel(NioServerSocketChannel.class)
-            .childHandler(new ChannelInitializerImpl());
-        ChannelFuture future = bootstrap.bind(new InetSocketAddress(8080));
+        bootstrap.group(
+                new NioEventLoopGroup(),
+                new NioEventLoopGroup()) // 指定Channel的实现
+            .channel(NioServerSocketChannel.class)//
+            .childHandler(new ChannelInitializerImpl()); // 注册一个ChannelInitializerImpl 的实例来设置ChannelPipeline
+        ChannelFuture future = bootstrap.bind(new InetSocketAddress(8080)); //绑定到地址
         future.sync();
     }
 
+    // 用以设置ChannelPipeline 的自定义ChannelInitializerImpl 实现
+    // 在大部分的场景下，如果你不需要使用只存在于SocketChannel 上的方法，
+    // 使用ChannelInitializer<Channel>就可以了，否则你可以使用
+    // ChannelInitializer<SocketChannel>，其中SocketChannel扩展了Channel。
     final class ChannelInitializerImpl extends ChannelInitializer<Channel> {
         @Override
         protected void initChannel(Channel ch) throws Exception {
