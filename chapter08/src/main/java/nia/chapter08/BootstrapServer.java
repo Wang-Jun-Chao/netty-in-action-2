@@ -25,9 +25,13 @@ public class BootstrapServer {
      */
     public void bootstrap() {
         NioEventLoopGroup group = new NioEventLoopGroup();
+        // 创建ServerBootstrap
         ServerBootstrap bootstrap = new ServerBootstrap();
+        // 设置EventLoopGroup，其提供了用于处理Channel 事件的EventLoop
         bootstrap.group(group)
+                // 指定要使用的Channel 实现
                 .channel(NioServerSocketChannel.class)
+                // 设 置用于处理已被接受的子Channel的I/O及数据的ChannelInboundHandler
                 .childHandler(new SimpleChannelInboundHandler<ByteBuf>() {
                     @Override
                     protected void channelRead0(ChannelHandlerContext channelHandlerContext, ByteBuf byteBuf) throws Exception {

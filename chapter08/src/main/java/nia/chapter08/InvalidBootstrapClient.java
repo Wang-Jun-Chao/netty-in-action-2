@@ -30,15 +30,21 @@ public class InvalidBootstrapClient {
      */
     public void bootstrap() {
         EventLoopGroup group = new NioEventLoopGroup();
+        // 创建一个新的Bootstrap类的实例，以创建新的客户端Channel
         Bootstrap bootstrap = new Bootstrap();
-        bootstrap.group(group).channel(OioSocketChannel.class)
+        // 指定一个适用于NIO 的EventLoopGroup 实现
+        bootstrap.group(group)
+                // 指定一个适用于OIO 的Channel实现类
+                .channel(OioSocketChannel.class)
                 .handler(new SimpleChannelInboundHandler<ByteBuf>() {
                     @Override
                     protected void channelRead0(ChannelHandlerContext ctx, ByteBuf buf) throws Exception {
                         System.out.println("Received data");
                     }
                 });
-        ChannelFuture future = bootstrap.connect(new InetSocketAddress("www.manning.com", 80));
+        // 尝试连接到远程节点
+        ChannelFuture future = bootstrap.connect(
+                new InetSocketAddress("www.manning.com", 80));
         future.syncUninterruptibly();
     }
 }

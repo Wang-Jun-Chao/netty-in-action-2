@@ -22,7 +22,9 @@ public class BootstrapWithInitializer {
      * Listing 8.6 Bootstrapping and using ChannelInitializer
      * */
     public void bootstrap() throws InterruptedException {
+        // 创建ServerBootstrap 以创建和绑定新的Channel
         ServerBootstrap bootstrap = new ServerBootstrap();
+        // 设置EventLoopGroup，其将提供用以处理Channel事件的EventLoop
         bootstrap.group(new NioEventLoopGroup(), new NioEventLoopGroup())
             .channel(NioServerSocketChannel.class)
             .childHandler(new ChannelInitializerImpl());
