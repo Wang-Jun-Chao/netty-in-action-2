@@ -6,9 +6,7 @@ import io.netty.channel.embedded.EmbeddedChannel;
 import nia.chapter09.AbsIntegerEncoder;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 /**
  * Author: 王俊超
@@ -20,19 +18,23 @@ import static org.junit.Assert.assertTrue;
 public class AbsIntegerEncoderTest {
     @Test
     public void testEncoded() {
+        // 创建一个ByteBuf，并且写入9 个负整数
         ByteBuf buf = Unpooled.buffer();
         for (int i = 1; i < 10; i++) {
             buf.writeInt(i * -1);
         }
 
-        EmbeddedChannel channel = new EmbeddedChannel(
-                new AbsIntegerEncoder());
+        // 创建一个EmbeddedChannel，并安装一个要测试的AbsIntegerEncoder
+        EmbeddedChannel channel = new EmbeddedChannel(new AbsIntegerEncoder());
+        // 写入ByteBuf，并断言调用readOutbound()方法将会产生数据
         assertTrue(channel.writeOutbound(buf));
+        // 将该Channel标记为已完成状态
         assertTrue(channel.finish());
 
         // read bytes
+        // 读取所产生的消息，并断言它们包含了对应的绝对值
         for (int i = 1; i < 10; i++) {
-            assertEquals((long)i, (long)channel.readOutbound());
+            assertEquals((Integer) i, (Integer) channel.readOutbound());
         }
         assertNull(channel.readOutbound());
     }
