@@ -18,9 +18,11 @@ import java.util.List;
 @ChannelHandler.Sharable
 public class WebSocketConvertHandler extends MessageToMessageCodec<WebSocketFrame,
         WebSocketConvertHandler.MyWebSocketFrame> {
+    // 将MyWebSocketFrame 编码为指定的WebSocketFrame子类型
     @Override
     protected void encode(ChannelHandlerContext ctx, WebSocketConvertHandler.MyWebSocketFrame msg,
             List<Object> out) throws Exception {
+        // 实例化一个指定子类型的WebSocketFrame
         ByteBuf payload = msg.getData().duplicate().retain();
         switch (msg.getType()) {
             case BINARY:
@@ -46,6 +48,7 @@ public class WebSocketConvertHandler extends MessageToMessageCodec<WebSocketFram
         }
     }
 
+    // 将WebSocketFrame 解码为MyWebSocketFrame，并设置FrameType
     @Override
     protected void decode(ChannelHandlerContext ctx, WebSocketFrame msg, List<Object> out) throws Exception {
         ByteBuf payload = msg.content().duplicate().retain();
@@ -73,7 +76,9 @@ public class WebSocketConvertHandler extends MessageToMessageCodec<WebSocketFram
         }
     }
 
+    // 声明WebSocketConvertHandler所使用的OUTBOUND_IN 类型
     public static final class MyWebSocketFrame {
+        // 定义拥有被包装的有效负载的WebSocketFrame的类型
         public enum FrameType {
             BINARY,
             CLOSE,
