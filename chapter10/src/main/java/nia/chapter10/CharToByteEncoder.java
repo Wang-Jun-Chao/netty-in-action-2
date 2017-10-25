@@ -11,9 +11,11 @@ import io.netty.handler.codec.MessageToByteEncoder;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
+// 扩展了MessageToByteEncoder
 public class CharToByteEncoder extends MessageToByteEncoder<Character> {
     @Override
     public void encode(ChannelHandlerContext ctx, Character msg, ByteBuf out) throws Exception {
+        // 将Character 解码为char，并将其写入到出站ByteBuf 中
         out.writeChar(msg);
     }
 }

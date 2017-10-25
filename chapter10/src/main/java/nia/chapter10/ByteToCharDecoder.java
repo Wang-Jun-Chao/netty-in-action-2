@@ -13,9 +13,11 @@ import java.util.List;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
+// 扩展了ByteToMessageDecoder
 public class ByteToCharDecoder extends ByteToMessageDecoder {
     @Override
     public void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+        // 将一个或者多个Character对象添加到传出的List 中
         if (in.readableBytes() >= 2) {
             out.add(in.readChar());
         }
