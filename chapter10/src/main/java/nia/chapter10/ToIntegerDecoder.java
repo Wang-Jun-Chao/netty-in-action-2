@@ -13,10 +13,13 @@ import java.util.List;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
+// 扩展ByteToMessageDecoder 类，以将字节解码为特定的格式
 public class ToIntegerDecoder extends ByteToMessageDecoder {
     @Override
     public void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
+        // 检查是否至少有4字节可读（一个int的字节长度）
         if (in.readableBytes() >= 4) {
+            // 从入站ByteBuf 中读取一个int，并将其添加到解码消息的List 中
             out.add(in.readInt());
         }
     }

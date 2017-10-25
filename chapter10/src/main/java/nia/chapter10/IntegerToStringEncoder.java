@@ -12,9 +12,11 @@ import java.util.List;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
+// 扩展了MessageToMessageEncoder
 public class IntegerToStringEncoder extends MessageToMessageEncoder<Integer> {
     @Override
     public void encode(ChannelHandlerContext ctx, Integer msg, List<Object> out) throws Exception {
+        // 将Integer 转换为String，并将其添加到List 中
         out.add(String.valueOf(msg));
     }
 }

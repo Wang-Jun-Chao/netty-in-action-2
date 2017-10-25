@@ -14,13 +14,16 @@ import java.util.List;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
+// 扩展ByteToMessageDecoder以将字节解码为消息
 public class SafeByteToMessageDecoder extends ByteToMessageDecoder {
     private static final int MAX_FRAME_SIZE = 1024;
 
     @Override
     public void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) throws Exception {
         int readable = in.readableBytes();
+        // 检查缓冲区中是否有超过MAX_FRAME_SIZE个字节
         if (readable > MAX_FRAME_SIZE) {
+            // 跳过所有的可读字节，抛出TooLongFrameException 并通知ChannelHandler
             in.skipBytes(readable);
             throw new TooLongFrameException("Frame too big!");
         }
