@@ -26,13 +26,15 @@ public class HttpCompressionInitializer extends ChannelInitializer<Channel> {
     protected void initChannel(Channel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
         if (isClient) {
+            // 如果是客户端，则添加HttpClientCodec
+            // 如果是客户端，则添加HttpContentDecompressor 以处理来自服务器的压缩内容
             pipeline.addLast("codec", new HttpClientCodec());
-            pipeline.addLast("decompressor",
-            new HttpContentDecompressor());
+            pipeline.addLast("decompressor", new HttpContentDecompressor());
         } else {
+            // 如果是服务器，则添加HttpServerCodec
+            // 如果是服务器，则添加HttpContentCompressor来压缩数据（如果客户端支持它）
             pipeline.addLast("codec", new HttpServerCodec());
-            pipeline.addLast("compressor",
-            new HttpContentCompressor());
+            pipeline.addLast("compressor", new HttpContentCompressor());
         }
     }
 }
