@@ -29,17 +29,19 @@ public class MarshallingInitializer extends ChannelInitializer<Channel> {
     @Override
     protected void initChannel(Channel channel) throws Exception {
         ChannelPipeline pipeline = channel.pipeline();
+        // 添加MarshallingDecoder 以将ByteBuf转换为POJO
         pipeline.addLast(new MarshallingDecoder(unmarshallerProvider));
+        // 添加MarshallingEncoder 以将POJO转换为ByteBuf
         pipeline.addLast(new MarshallingEncoder(marshallerProvider));
+        // 添加ObjectHandler，以处理普通的实现了Serializable接口的POJO
         pipeline.addLast(new ObjectHandler());
     }
 
-    public static final class ObjectHandler
-        extends SimpleChannelInboundHandler<Serializable> {
+    public static final class ObjectHandler extends SimpleChannelInboundHandler<Serializable> {
         @Override
         public void channelRead0(
-            ChannelHandlerContext channelHandlerContext,
-            Serializable serializable) throws Exception {
+                ChannelHandlerContext channelHandlerContext,
+                Serializable serializable) throws Exception {
             // Do something
         }
     }
