@@ -16,6 +16,7 @@ import io.netty.handler.stream.ChunkedWriteHandler;
  * Github: https://github.com/wang-jun-chao
  * All Rights Reserved !!!
  */
+// 扩展了ChannelInitializer
 public class ChatServerInitializer extends ChannelInitializer<Channel> {
     private final ChannelGroup group;
 
@@ -23,6 +24,7 @@ public class ChatServerInitializer extends ChannelInitializer<Channel> {
         this.group = group;
     }
 
+    // 将所有需要的ChannelHandler 添加到ChannelPipeline 中
     @Override
     protected void initChannel(Channel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
