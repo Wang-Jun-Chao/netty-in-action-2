@@ -21,27 +21,30 @@ import java.net.InetSocketAddress;
  * All Rights Reserved !!!
  */
 public class ChatServer {
+    // 创建DefaultChannelGroup，其将保存所有已经连接的WebSocket Channel
     private final ChannelGroup channelGroup =
-        new DefaultChannelGroup(ImmediateEventExecutor.INSTANCE);
+            new DefaultChannelGroup(ImmediateEventExecutor.INSTANCE);
     private final EventLoopGroup group = new NioEventLoopGroup();
     private Channel channel;
 
     public ChannelFuture start(InetSocketAddress address) {
+        // 引导服务器
         ServerBootstrap bootstrap = new ServerBootstrap();
         bootstrap.group(group)
-             .channel(NioServerSocketChannel.class)
-             .childHandler(createInitializer(channelGroup));
+                .channel(NioServerSocketChannel.class)
+                .childHandler(createInitializer(channelGroup));
         ChannelFuture future = bootstrap.bind(address);
         future.syncUninterruptibly();
         channel = future.channel();
         return future;
     }
 
-    protected ChannelInitializer<Channel> createInitializer(
-        ChannelGroup group) {
+    // 创建ChatServerInitializer
+    protected ChannelInitializer<Channel> createInitializer(ChannelGroup group) {
         return new ChatServerInitializer(group);
     }
 
+    // 处理服务器关闭，并释放所有的资源
     public void destroy() {
         if (channel != null) {
             channel.close();
@@ -57,8 +60,7 @@ public class ChatServer {
         }
         int port = Integer.parseInt(args[0]);
         final ChatServer endpoint = new ChatServer();
-        ChannelFuture future = endpoint.start(
-                new InetSocketAddress(port));
+        ChannelFuture future = endpoint.start(new InetSocketAddress(port));
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
